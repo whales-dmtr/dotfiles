@@ -20,10 +20,10 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Transparent background
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -101,15 +101,6 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>gx", "<cmd>:Unified reset<CR>")
 		end,
 	},
-	-- More git commands
-	{
-		"tpope/vim-fugitive",
-		opts = {},
-		config = function()
-			vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-			vim.keymap.set("n", "<leader>gl", "<cmd>Git log<CR>")
-		end,
-	},
 	-- Detect tabstop and shiftwidth automatically
 	"NMAC427/guess-indent.nvim",
 	-- Add vertical lines to show brackets scope
@@ -147,7 +138,7 @@ require("lazy").setup({
 			-- Swap < Undotree
 			vim.o.swapfile = false
 			vim.o.backup = false
-			vim.o.undodir = "~/.local/share/nvim/undotree"
+			vim.o.undodir = "/Users/dimaoleynik/.local/share/nvim/undotree"
 			vim.o.undofile = true
 		end,
 	},
@@ -543,10 +534,25 @@ require("lazy").setup({
 					"python",
 				})
 				:wait(300000) -- wait max. 5 minutes
-			-- Треба підібрати правильний івент щоб трісітер лоадився коли треба
-			vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
-				callback = function()
-					vim.treesitter.start()
+
+			local syntax_on = {
+				elixir = true,
+				php = true,
+			}
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					local bufnr = args.buf
+					local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
+					if not ok or not parser then
+						return
+					end
+					pcall(vim.treesitter.start)
+
+					local ft = vim.bo[bufnr].filetype
+					if syntax_on[ft] then
+						vim.bo[bufnr].syntax = "on"
+					end
 				end,
 			})
 		end,
