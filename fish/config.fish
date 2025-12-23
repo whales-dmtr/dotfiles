@@ -6,6 +6,7 @@ set -x PATH (pyenv root)/shims $PATH
 
 # Aliases
 alias tmuxs "~/.config/tmux/plugins/tmux-sessionizer/sessionizer.bash"
+alias sv "source /opt/custom/sovenv.fish"
 
 ### Abbreviations
 
@@ -19,6 +20,8 @@ abbr --add gca git commit --amend
 abbr --add gg git checkout
 abbr --add ga git add
 abbr --add gaa git add .
+abbr --add gp git push origin
+abbr --add gpm git push origin master
 
 # System
 abbr --add sf source ~/.config/fish/config.fish
