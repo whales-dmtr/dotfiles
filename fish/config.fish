@@ -25,6 +25,7 @@ abbr --add gpm git push origin master
 
 # System
 abbr --add sf source ~/.config/fish/config.fish
+abbr --add d deactivate
 
 # Custom prompt with starship
 starship init fish | source
