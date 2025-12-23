@@ -67,6 +67,8 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>")
+
 require("lazy").setup({
 	"ThePrimeagen/vim-be-good",
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -145,7 +147,7 @@ require("lazy").setup({
 			-- Swap < Undotree
 			vim.o.swapfile = false
 			vim.o.backup = false
-			vim.o.undodir = "/Users/dimaoleynik/.undotree"
+			vim.o.undodir = "~/.local/share/nvim/undotree"
 			vim.o.undofile = true
 		end,
 	},
@@ -541,8 +543,8 @@ require("lazy").setup({
 					"python",
 				})
 				:wait(300000) -- wait max. 5 minutes
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "<filetype>" },
+			-- Треба підібрати правильний івент щоб трісітер лоадився коли треба
+			vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
 				callback = function()
 					vim.treesitter.start()
 				end,
