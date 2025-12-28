@@ -3,7 +3,8 @@ vim.o.relativenumber = true
 vim.g.mapleader = " "
 vim.o.signcolumn = "yes"
 vim.o.cursorline = true
-vim.o.showmode = true vim.o.wrap = false
+vim.o.showmode = true
+vim.o.wrap = false
 vim.o.winborder = "double"
 vim.o.breakindent = false
 vim.o.tabstop = 4
@@ -20,8 +21,21 @@ vim.o.confirm = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 
--- Transparent background
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+vim.o.makeprg = "python3 %"
+
+local function escape(str)
+	local escape_chars = [[;,."|\]]
+	return vim.fn.escape(str, escape_chars)
+end
+
+local en_shift = [[~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>]]
+local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ]]
+local en = [[`qwertyuiop[]asdfghjkl;'zxcvbnm]]
+local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
+vim.opt.langmap = vim.fn.join({
+	escape(ru_shift)
+		.. ";"
+		.. escape(en_shift),
+	escape(ru) .. ";" .. escape(en),
+}, ",")
+
