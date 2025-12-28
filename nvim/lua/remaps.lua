@@ -16,3 +16,5 @@ vim.keymap.set({ "n", "v" }, "<leader>cd", '"+d')
 vim.keymap.set({ "n", "v" }, "<leader>cp", '"+p')
 
 vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>")
+
+vim.keymap.set("n", "<leader>e", "<cmd>make<CR>")
