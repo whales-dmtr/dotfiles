@@ -1,5 +1,5 @@
-require("remaps")
 require("options")
+require("keymaps")
 require("transparent")
 require("autocmds")
 
@@ -8,4 +8,3 @@ require("config.lazy")
 
 -- Load all plugins from lua/plugins
 require("lazy").setup("plugins")
-
