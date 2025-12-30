@@ -15,8 +15,14 @@ if [ $? != 0 ]; then
     tmux new -c "$project_dir" -s "$project_name" -d
 fi
 
-# Attach to created session
-tmux attach-session -t $project_name
-tmux switch -t "$project_name"
+if [[ "$project_name" =~ \. ]]; then
+    tmux attach-session -t "_${project_name##*\.}" 
+    tmux switch -t "_${project_name##*\.}" 
+else
+    # Attach to created session
+    tmux attach-session -t $project_name
+    tmux switch -t "$project_name"
+fi
+
 
 
