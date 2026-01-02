@@ -1,7 +1,7 @@
 # yabai
 
 # toggle float mode 🙏 
-alt - t : yabai -m window --toggle float
+alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
 # switch between spaces
 alt - w : yabai -m space --focus prev
@@ -20,7 +20,14 @@ alt - h : yabai -m window --focus west
 alt - l : yabai -m window --focus east
 
 # balance all windows
-shift + alt - e : yabai -m space --balance
+shift + alt - b : yabai -m space --balance
+
+# move window accross spaces
+shift + alt - w : yabai -m window --space prev; yabai -m space --focus prev
+shift + alt - e : yabai -m window --space next; yabai -m space --focus next
+
+# swap spaces horizontally 
+shift + alt - y : yabai -m space --mirror y-axis
 
 # apps
 alt - return : open -a "Kitty.app"
