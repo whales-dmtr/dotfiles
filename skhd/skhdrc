@@ -1,0 +1,32 @@
+# yabai
+
+# toggle float mode 🙏 
+alt - t : yabai -m window --toggle float
+
+# switch between spaces
+alt - w : yabai -m space --focus prev
+alt - e : yabai -m space --focus next
+
+# swap windows
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - h : yabai -m window --swap west
+shift + alt - l : yabai -m window --swap east
+
+# change window focus within space
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+
+# balance all windows
+shift + alt - e : yabai -m space --balance
+
+# apps
+alt - return : open -a "Kitty.app"
+alt - x : open -a "Firefox.app"
+alt - 1 : open -a "ChatGPT.app"
+alt - 2 : open -a "Telegram.app"
+alt - 3 : open -a "Spotify.app"
+alt - 4 : open -a "Obsidian.app"
+alt - 5 : open -a "Discord.app"
