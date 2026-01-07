@@ -1,12 +1,16 @@
 # отступы
-yabai -m config top_padding 5
-yabai -m config bottom_padding 5
-yabai -m config left_padding 12
-yabai -m config right_padding 12
-yabai -m config window_gap 5
+yabai -m config top_padding 7
+yabai -m config bottom_padding 7
+yabai -m config left_padding 7
+yabai -m config right_padding 7
+yabai -m config window_gap 7
 
 # наводиться на окно по наведению курсора автоматически
 yabai -m config focus_follows_mouse autoraise
+
+# переводить курсор при переключении между окнама с помощью 
+# сочетаний клавиш
+yabai -m config mouse_follows_focus on
 
 # делить окнa на двое по дефолту
 yabai -m config layout bsp
@@ -15,8 +19,15 @@ yabai -m config --space 1 layout stack
 yabai -m config --space 5 layout stack
 
 # не позиционировать приложения автоматически
-yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^Finder$" manage=off grid=12:12:1:1:10:10
+yabai -m rule --add app="^Preview$" manage=off grid=4:4:1:1:2:2
+yabai -m rule --add app="^Font Book$" manage=off grid=4:4:1:1:2:2
 
+
+# yabai -m config external_bar all:33:0
+
+borders active_color=0xFF007AD1 inactive_color=0XFF494D64 width=6.0 &
 

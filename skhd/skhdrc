@@ -1,7 +1,7 @@
 # yabai
 
 # toggle float mode 🙏 
-alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:10
 
 # switch between spaces
 alt - w : yabai -m space --focus prev
@@ -29,6 +29,13 @@ shift + alt - e : yabai -m window --space next; yabai -m space --focus next
 # swap spaces horizontally 
 shift + alt - y : yabai -m space --mirror y-axis
 
+# move windows in floating mode
+ctrl + alt - l : yabai -m window --move rel:30:0
+ctrl + alt - h : yabai -m window --move rel:-30:0
+ctrl + alt - j : yabai -m window --move rel:0:30
+ctrl + alt - k : yabai -m window --move rel:0:-30
+
+
 # apps
 alt - return : open -a "Kitty.app"
 alt - x : open -a "Firefox.app"
@@ -37,3 +44,4 @@ alt - 2 : open -a "Telegram.app"
 alt - 3 : open -a "Spotify.app"
 alt - 4 : open -a "Obsidian.app"
 alt - 5 : open -a "Discord.app"
+
