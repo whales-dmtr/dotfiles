@@ -21,6 +21,8 @@ vim.o.confirm = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+vim.o.conceallevel = 2
+
 vim.o.makeprg = "python3 %"
 
 local function escape(str)
@@ -33,9 +35,6 @@ local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТ�
 local en = [[`qwertyuiop[]asdfghjkl;'zxcvbnm]]
 local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
 vim.opt.langmap = vim.fn.join({
-	escape(ru_shift)
-		.. ";"
-		.. escape(en_shift),
+	escape(ru_shift) .. ";" .. escape(en_shift),
 	escape(ru) .. ";" .. escape(en),
 }, ",")
-

@@ -4,14 +4,16 @@ end
 
 set -x PATH (pyenv root)/shims $PATH
 
+set EDITOR nvim
+
 # Aliases
-alias tmuxs "~/.config/tmux/plugins/tmux-sessionizer/sessionizer.bash"
+alias tmuxs "~/.config/tmux/plugins/custom_scripts/sessionizer.bash"
 alias sv "source /opt/custom/sovenv.fish"
+alias scim sc-im
 
 ### Abbreviations
 
 # Git
-abbr --add c clear
 abbr --add gs git status
 abbr --add gl git log 
 abbr --add glo git log --oneline
@@ -24,8 +26,13 @@ abbr --add gp git push origin
 abbr --add gpm git push origin master
 
 # System
+abbr --add c clear
 abbr --add sf source ~/.config/fish/config.fish
 abbr --add d deactivate
+abbr --add t tmux
+abbr --add ta tmux a
+abbr --add th "tmux new-session -c \"~\" -s \"~ (home)\""
+abbr --add o open
 
 # Custom prompt with starship
 starship init fish | source
@@ -33,4 +40,6 @@ starship init fish | source
 # Add plugin zoxide
 zoxide init fish | source
 
+
+set fish_greeting "$(cat ~/.config/fish/ascii.txt)"
 

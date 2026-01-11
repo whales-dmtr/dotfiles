@@ -1,5 +1,5 @@
 return {
-    "ThePrimeagen/Vim-Be-Good",
+	"ThePrimeagen/Vim-Be-Good",
 	-- Detect tabstop and shiftwidth automatically
 	"NMAC427/guess-indent.nvim",
 	-- Add vertical lines to show brackets scope

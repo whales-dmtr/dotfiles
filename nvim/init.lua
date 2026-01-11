@@ -1,6 +1,5 @@
 require("options")
 require("keymaps")
-require("transparent")
 require("autocmds")
 
 -- Instal plugin manager (config/lazy.lua)
