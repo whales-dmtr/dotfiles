@@ -26,8 +26,15 @@ shift + alt - b : yabai -m space --balance
 shift + alt - w : yabai -m window --space prev; yabai -m space --focus prev
 shift + alt - e : yabai -m window --space next; yabai -m space --focus next
 
-# swap spaces horizontally 
+# swap spaces horizontally and vertically
 shift + alt - y : yabai -m space --mirror y-axis
+shift + alt - x : yabai -m space --mirror x-axis
+
+# rotate everything 
+shift + alt - r : yabai -m space --rotate 270
+
+# balance all windows (all windows takes the same space 
+alt - r : yabai -m space --balance
 
 # move windows in floating mode
 ctrl + alt - l : yabai -m window --move rel:30:0
@@ -35,13 +42,22 @@ ctrl + alt - h : yabai -m window --move rel:-30:0
 ctrl + alt - j : yabai -m window --move rel:0:30
 ctrl + alt - k : yabai -m window --move rel:0:-30
 
+# change master width
+alt - 0x2B : ~/.config/skhd/resizeWindow.sh -h
+alt - 0x2F : ~/.config/skhd/resizeWindow.sh -l
+
+# change split height
+# alt + shift - u : ~/.config/skhd/resizeWindow.sh -u
+# alt + shift - d : ~/.config/skhd/resizeWindow.sh -d
+
 
 # apps
 alt - return : open -a "Kitty.app"
-alt - x : open -a "Firefox.app"
-alt - 1 : open -a "ChatGPT.app"
+alt - 1 : open -a "Firefox.app"
 alt - 2 : open -a "Telegram.app"
-alt - 3 : open -a "Spotify.app"
+alt - 3 : open -a "Discord.app"
 alt - 4 : open -a "Obsidian.app"
-alt - 5 : open -a "Discord.app"
+alt - 0 : open -a "Clock.app"
+
+
 
