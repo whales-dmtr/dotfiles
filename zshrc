@@ -24,12 +24,19 @@ path=(
 /usr/sbin
 /sbin
 /Users/dimaoleynik/.config/sowon
+/Users/dimaoleynik/kew
+/Users/dimaoleynik/.cargo/bin
 $path
 )
 
-alias tmuxs="$HOME/.config/tmux/custom_scripts/sessionizer.bash"
-alias sv="source /opt/custom/sovenv.fish"
-alias scim="sc-im"
+# system
+alias c="clear"
+alias v="nvim"
+alias t="tmux"
+alias ta="tmux a"
+alias o="open"
+alias s="sowon"
+alias so="source"
 
 # git
 alias gs="git status"
@@ -43,18 +50,19 @@ alias gaa="git add ."
 alias gp="git push origin"
 alias gpm="git push origin master"
 
-# system
-alias c="clear"
-alias v="nvim"
-alias sf="source ~/.config/fish/config.fish"
-alias d="deactivate"
-alias t="tmux"
-alias ta="tmux a"
-alias th='tmux new-session -c "$HOME" -s "$HOME (home)"'
-alias o="open"
-
-export dwl=~/Downloads
+export DL=~/Downloads
+export DX=~/Documents
 export EDITOR=nvim
+export CONFIG=~/.zshrc
+
+source <(fzf --zsh)
+
+bindkey -r '^A' 
+bindkey -r '^E' 
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+export DYLD_LIBRARY_PATH="/opt/homebrew/lib${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
