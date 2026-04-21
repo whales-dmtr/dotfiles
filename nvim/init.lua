@@ -19,24 +19,34 @@ vim.o.conceallevel = 2
 
 vim.o.langmap =
 "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
-vim.g.netrw_liststyle = 1
 vim.g.netrw_banner = 0
 
 -- Keymaps
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
 vim.keymap.set("n", "<leader>r", "<cmd>restart<CR>")
+vim.keymap.set("n", "<leader>s", "<cmd>!source %<CR>")
 vim.keymap.set("n", "-", "<cmd>Ex<CR>")
+vim.keymap.set("n", "<leader><leader>", "i ")
 
-vim.keymap.set({ "n", "v" }, "<leader>cy", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 vim.keymap.set({ "n", "v" }, "<leader>cp", '"+p')
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
+-- ThePrimeagen
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("v", "<leader>p", '"_dP')
-vim.keymap.set("n", "p", "]p")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
+-- Move the word to the next line in the insert mode
+vim.keymap.set("i", "<C-n>", "Bi\n$a i")
 
 -- Plugins
 vim.pack.add({
@@ -44,6 +54,7 @@ vim.pack.add({
     { src = "https://github.com/ThePrimeagen/harpoon" },
     { src = "https://github.com/blazkowolf/gruber-darker.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/saghen/blink.cmp" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -54,7 +65,7 @@ vim.pack.add({
     { src = "https://github.com/ThePrimeagen/Vim-Be-Good" },
 })
 
-vim.keymap.set("n", "<leader>vg", "<cmd>Vim-Be-Good<CR>")
+vim.keymap.set("n", "<leader>vg", "<cmd>VimBeGood<CR>")
 
 -- Harpoon
 vim.keymap.set("n", "<C-e>", require("harpoon.ui").toggle_quick_menu)
@@ -74,8 +85,11 @@ vim.keymap.set("n", "<C-l>", function()
 end)
 
 -- LSP
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('pyright')
+local lsps = { 'lua_ls', 'bashls', 'pyright' }
+
+for i = 1, #lsps do
+    vim.lsp.enable(lsps[i])
+end
 
 require("blink.cmp").setup({
     completion = {
@@ -88,6 +102,8 @@ require("conform").setup()
 vim.keymap.set("n", "<leader>lf", function()
     require("conform").format({ async = true, lsp_format = "fallback" })
 end)
+
+require("mason").setup()
 
 -- Fuzzy finger (Telescope)
 local builtin = require("telescope.builtin")
@@ -118,19 +134,25 @@ require("gitsigns").setup({
 })
 
 -- Undotree
-			vim.keymap.set("n", "<leader>u", function()
-				vim.cmd.UndotreeToggle()
-				vim.cmd.UndotreeFocus()
-			end)
+vim.keymap.set("n", "<leader>u", function()
+    vim.cmd.UndotreeToggle()
+    vim.cmd.UndotreeFocus()
+end)
 
-			-- Swap < Undotree
-			vim.o.swapfile = false
-			vim.o.backup = false
-			vim.o.undodir = "/Users/dimaoleynik/.local/share/nvim/undotree"
-			vim.o.undofile = true
+-- Swap < Undotree
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undodir = "/Users/dimaoleynik/.local/share/nvim/undotree"
+vim.o.undofile = true
 
 -- Colorscheme
 vim.cmd("colorscheme gruber-darker")
+
+-- Transparency
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
 
 -- Proper highlighting with treesitter
 require("nvim-treesitter").setup({
