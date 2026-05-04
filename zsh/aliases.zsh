@@ -1,0 +1,12 @@
+alias c="clear"
+alias v="nvim"
+alias t="tmux -c ~/.config/tmux/custom_scripts/sessionizer.bash"
+alias ta="tmux a"
+alias o="open"
+alias so="source"
+alias ls="ls --color=auto"
+alias gs="git status"
+alias gl="git log"
+alias gaa="git add ."
+alias gpm="git push origin master"
+

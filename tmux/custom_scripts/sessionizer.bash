@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-project_dir=`printf "$(find -L ~/Documents ~/.config/ -type d -print)\n/Users/dimaoleynik" | fzf`
+project_dir=`printf "$(find -L "$HOME" -path "$HOME/Library" -prune -o -type d -print)" | fzf`
 project_name=`basename $project_dir`
 
 # Вывести путь папки в новую вкладку

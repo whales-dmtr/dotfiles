@@ -24,7 +24,6 @@ vim.keymap.set({ "n", "v" }, "<leader>cp", '"+p')
 vim.keymap.set("n", "<leader>w",  "<cmd>write<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>quit<CR>")
 vim.keymap.set("n", "<leader>r", "<cmd>restart<CR>")
-vim.keymap.set("n", "<leader>s", "<cmd>!source %<CR>")
 
 -- Move selection
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -41,6 +40,8 @@ vim.keymap.set("n", "-", "<cmd>Ex<CR>")
 
 -- Move the word to the next line in the insert mode
 vim.keymap.set("i", "<C-n>", "Bi\n$a i")
+
+
 
 
 
