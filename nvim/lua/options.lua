@@ -19,3 +19,6 @@ vim.o.conceallevel = 2
 vim.o.langmap =
 "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 vim.g.netrw_banner = 0
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+

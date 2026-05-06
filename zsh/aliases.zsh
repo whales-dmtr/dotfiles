@@ -1,6 +1,6 @@
 alias c="clear"
 alias v="nvim"
-alias t="tmux -c ~/.config/tmux/custom_scripts/sessionizer.bash"
+alias t="tmux -c ~/.config/tmux/custom_scripts/sessionizer"
 alias ta="tmux a"
 alias o="open"
 alias so="source"
