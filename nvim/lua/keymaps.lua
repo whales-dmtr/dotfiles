@@ -30,9 +30,6 @@ vim.keymap.set("n", "<leader>r", "<cmd>restart<CR>")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- Make current file executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
 -- File Explorer
 vim.keymap.set("n", "-", "<cmd>Ex<CR>")
 
@@ -47,10 +44,10 @@ vim.keymap.set("i", "<C-z>", "*  [ ]  ")
 vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerminal<CR>") -- See plugin/terminal.lua
 vim.keymap.set("t", "<Esc><Esc>", "<C-n><C-\\>") -- Exit insert mode in terminal mode
 
-vim.keymap.set("n", "<leader>e", function() -- [E]xecute
-	vim.cmd("ToggleTerminal")
-    if not job_id then
-        print("global variable job_id is not defined")
-    end
-	vim.fn.chansend(job_id, { "./build\r\n" })
-end)
+-- vim.keymap.set("n", "<leader>e", function() -- [E]xecute
+-- 	vim.cmd("ToggleTerminal")
+--     if not job_id then
+--         print("global variable job_id is not defined")
+--     end
+-- 	vim.fn.chansend(job_id, { "./build\r\n" })
+-- end)

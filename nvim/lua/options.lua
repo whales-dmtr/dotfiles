@@ -21,3 +21,7 @@ vim.opt.langmap =
 vim.g.netrw_banner = 0
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+vim.g.python_indent = {
+  disable_parentheses_indenting = true,
+}

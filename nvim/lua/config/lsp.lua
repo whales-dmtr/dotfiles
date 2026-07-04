@@ -10,26 +10,17 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
 			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			{
-				"folke/lazydev.nvim",
-				ft = "lua", -- only load on lua files
-				opts = {
-					library = {
-						-- See the configuration section for more details
-						-- Load luvit types when the `vim.uv` word is found
-						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-					},
-				},
-			},
 			{ "j-hui/fidget.nvim", opts = {} },
 
 			"saghen/blink.cmp",
 		},
 		config = function()
+            require("lspconfig")
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
 					local map = function(keys, func, desc, mode)
@@ -72,15 +63,10 @@ return {
 			})
 
 			local servers = {
-				clangd = {},
-				gopls = {},
-
 				pyright = {},
 
 				html = {},
 				cssls = {},
-				jsonls = {},
-				tsgo = {},
 
 				bashls = {},
 
@@ -95,43 +81,6 @@ return {
 				},
 			}
 
-			-- local servers = {
-			--     {
-			--         "lua_ls",
-			--         {
-			--             -- Command and arguments to start the server.
-			--             cmd = { 'lua-language-server' },
-			--             -- Filetypes to automatically attach to.
-			--             filetypes = { 'lua' },
-			--             -- Sets the "workspace" to the directory where any of these files is found.
-			--             -- Files that share a root directory will reuse the LSP server connection.
-			--             -- Nested lists indicate equal priority, see |vim.lsp.Config|.
-			--             root_markers = { { '.luarc.json', '.luarc.jsonc' }, '.git' },
-			--             -- Specific settings to send to the server. The schema is server-defined.
-			--             -- Example: https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
-			--             settings = {
-			--                 Lua = {
-			--                     runtime = {
-			--                         version = 'LuaJIT',
-			--                     }
-			--                 }
-			--             }
-			--         }
-			--     },
-			--     {
-			--         "pyright",
-			--         {}
-			--     }
-			-- }
-
-			-- for i = 1, #servers do
-			--     local server_name = servers[i][1]  -- { {"lua_lsp", ...}, {"pyright", ...} }
-			--     local opts = servers[i][2]  -- { { ..., { cmd = { 'lua-language-server' } }, { ..., { cmd = ...} } }
-			--
-			--     vim.lsp.config[server_name] = opts
-			--     vim.lsp.enable(server_name)
-			-- end
-
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			local ensure_installed = vim.tbl_keys(servers or {})
@@ -143,16 +92,16 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
 				automatic_installation = false,
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
-				},
+				-- handlers = {
+				-- 	function(server_name)
+				-- 		local server = servers[server_name] or {}
+				-- 		-- This handles overriding only values explicitly passed
+				-- 		-- by the server configuration above. Useful when disabling
+				-- 		-- certain features of an LSP (for example, turning off formatting for ts_ls)
+				-- 		server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+				-- 		require("lspconfig")[server_name].setup(server)
+				-- 	end,
+				-- },
 			})
 		end,
 	},

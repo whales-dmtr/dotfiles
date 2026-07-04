@@ -3,25 +3,15 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
         config = function ()
-            vim.keymap.set("n", "<leader>gp", require("gitsigns").preview_hunk)
+            vim.keymap.set("n", "<leader>gh", require("gitsigns").preview_hunk
+        )
         end
 	},
-	-- Git Diff
-	{
-		"axkirillov/unified.nvim",
-		config = function()
-			require("unified").setup({
-				-- your configuration comes here
-			})
-			vim.keymap.set("n", "]h", function()
-				require("unified.navigation").next_hunk()
-			end)
-			vim.keymap.set("n", "[h", function()
-				require("unified.navigation").previous_hunk()
-			end)
-
-			vim.keymap.set("n", "<leader>gd", vim.cmd.Unified)
-			vim.keymap.set("n", "<leader>gx", "<cmd>:Unified reset<CR>")
-		end,
-	},
+    {
+        "tpope/vim-fugitive",
+        config = function ()
+            vim.keymap.set("n", "<leader>gs", "<cmd>Git<CR>")
+            vim.keymap.set("n", "<leader>gl", "<cmd>Git log<CR>")
+        end
+    }
 }

@@ -8,7 +8,6 @@ tmux has-session -t $project_name 2>/dev/null
 if [ $? != 0 ]; then
     # Set up your session
     tmux new -c "$project_dir" -s "$project_name" -d "nvim"
-    tmux neww -t "$project_name" -c "$project_dir"
 fi
 
 if [[ "$project_name" =~ \. ]]; then
