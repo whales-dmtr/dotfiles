@@ -1,5 +1,4 @@
-font-size = 15
-font-feature = -calt 
-theme = Gruber Darker
+font-size = 16
 confirm-close-surface = false
-
+fullscreen = true
+theme = carbonfox

@@ -1,11 +1,10 @@
 alt - return : open -a "Ghostty.app"
+alt - 1 : open -a "Anki.app"
 alt - 2 : open -a "Telegram.app"
 alt - 3 : open -a "Firefox.app"
 alt - f : open -a "Finder.app"
-alt - p : open -a "sioyek.app"
 alt - b : open -a "DBeaver.app"
 alt - m : open -a "Spotify.app"
-alt - w : open -a "Anki.app"
 
 
 

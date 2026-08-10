@@ -1,7 +1,9 @@
 .DS_Store
+*lock.json
+.zsh_history
+.zcompdump*
+
 gtk-3.0/
 opencode/
 htop/
-lazy-lock.json
-.zsh_history
-.zcompdump*
+zsh/
